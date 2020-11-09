@@ -18,6 +18,55 @@ const Root = () => {
   const [cartTotal, setCartTotal] = useState(0);
   const [isCartAlertOpen, setIsCartAlertOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({});
+  const [filteredProducts, setFilteredProducts] = useState([...products]);
+
+  // filter states
+  const [category, setCategory] = useState("all");
+  const [priceRange, setPriceRange] = useState([200, 3700]);
+  const [search, setSearch] = useState("");
+
+  const handleSearchChange = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+  };
+
+  const handlePriceChange = (event, newPrice) => {
+    setPriceRange(newPrice);
+  };
+
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const filterProducts = () => {
+    let tempProducts = [...products];
+    //name
+    if (search !== "") {
+      tempProducts = tempProducts.filter((el) => {
+        return (
+          el.productName.toLowerCase().startsWith(search.toLowerCase()) === true
+        );
+      });
+    }
+    //price
+    tempProducts = tempProducts.filter((el) => {
+      return (
+        el.productPrice >= priceRange[0] && el.productPrice <= priceRange[1]
+      );
+    });
+    //category
+    if (category !== "all") {
+      tempProducts = tempProducts.filter(
+        (el) => el.productCategory === category
+      );
+    }
+
+    setFilteredProducts(tempProducts);
+  };
+
+  useEffect(() => {
+    filterProducts();
+  }, [category, priceRange, search]);
 
   const handleCartOpen = () => {
     setIsCartOpen(true);
@@ -109,6 +158,7 @@ const Root = () => {
           addToCart,
           cart,
           products,
+          filteredProducts,
           deleteFromCart,
           cartCounter,
           increaseCartCounter,
@@ -120,6 +170,12 @@ const Root = () => {
           handleIsCartAlertClose,
           isCartAlertOpen,
           selectedProduct,
+          category,
+          handleCategoryChange,
+          priceRange,
+          handlePriceChange,
+          handleSearchChange,
+          search,
         }}
       >
         <MainTemplate>
