@@ -11,19 +11,67 @@ import ShopContext from "./context";
 import { productsData } from "./localData";
 
 const Root = () => {
-  const [cart, setCart] = useState([]);
+  const getCartFromLocalStorage = () => {
+    let localStorageCart;
+
+    if (localStorage.getItem("cart")) {
+      localStorageCart = JSON.parse(localStorage.getItem("cart"));
+    } else {
+      localStorageCart = [];
+    }
+
+    return localStorageCart;
+  };
+
+  const getCartCounterFromLocalStorage = () => {
+    let localStorageCounter;
+
+    if (localStorage.getItem("cartCounter")) {
+      localStorageCounter = JSON.parse(localStorage.getItem("cartCounter"));
+    } else {
+      localStorageCounter = 0;
+    }
+    return localStorageCounter;
+  };
+
+  const [cart, setCart] = useState(getCartFromLocalStorage());
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [products, setProducts] = useState([...productsData]);
-  const [cartCounter, setCartCounter] = useState(0);
+  const [cartCounter, setCartCounter] = useState(
+    getCartCounterFromLocalStorage()
+  );
   const [cartTotal, setCartTotal] = useState(0);
   const [isCartAlertOpen, setIsCartAlertOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({});
+  const [notSelectedProduct, setNotSelectedProduct] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([...products]);
+  const [isPaymentAlertOpen, setIsPaymentAlertOpen] = useState(false);
 
   // filter states
   const [category, setCategory] = useState("all");
-  const [priceRange, setPriceRange] = useState([200, 3700]);
+  const [priceRange, setPriceRange] = useState([
+    Math.min(...products.map((el) => el.productPrice)),
+    Math.max(...products.map((el) => el.productPrice)),
+  ]);
   const [search, setSearch] = useState("");
+  const [freeDelivery, setFreeDelivery] = useState(false);
+
+  useEffect(() => {
+    setCartToLocalStorage();
+    setCartCounterToLocalStorage();
+  }, [cart, cartCounter]);
+
+  const setCartToLocalStorage = () => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
+  const setCartCounterToLocalStorage = () => {
+    localStorage.setItem("cartCounter", JSON.stringify(cartCounter));
+  };
+
+  const handleFreeDeliveryChange = (e) => {
+    setFreeDelivery(e.target.checked);
+  };
 
   const handleSearchChange = (e) => {
     e.preventDefault();
@@ -40,7 +88,12 @@ const Root = () => {
 
   const filterProducts = () => {
     let tempProducts = [...products];
-    //name
+
+    //delivery
+    if (freeDelivery) {
+      tempProducts = tempProducts.filter((el) => el.freeDelivery === true);
+    }
+    //search
     if (search !== "") {
       tempProducts = tempProducts.filter((el) => {
         return (
@@ -66,7 +119,7 @@ const Root = () => {
 
   useEffect(() => {
     filterProducts();
-  }, [category, priceRange, search]);
+  }, [category, priceRange, search, freeDelivery]);
 
   const handleCartOpen = () => {
     setIsCartOpen(true);
@@ -100,7 +153,22 @@ const Root = () => {
       filteredProduct.productQuantity = filteredProduct.productQuantity + 1;
     }
     setCart([...new Set([...cart, filteredProduct])]);
+    selectProduct(name);
+  };
+
+  const selectProduct = (name) => {
+    const filteredProduct = products.find((el) => el.productName === name);
+
     setSelectedProduct(filteredProduct);
+  };
+
+  const notSelect = (name, category) => {
+    const secondFilteredProduct = products.filter(
+      (el) => el.productCategory === category && el.productName !== name
+    );
+
+    console.log(secondFilteredProduct);
+    setNotSelectedProduct([...secondFilteredProduct]);
   };
 
   const deleteFromCart = (name, quantity) => {
@@ -125,6 +193,16 @@ const Root = () => {
   useEffect(() => {
     calculateCartTotal();
   }, [cart]);
+
+  const clearCartAndCartCounter = () => {
+    setCart([]);
+    setCartCounter(0);
+    setIsPaymentAlertOpen(true);
+  };
+
+  const handlePaymentAlertClose = () => {
+    setIsPaymentAlertOpen(false);
+  };
 
   const increaseProductQuantity = (name) => {
     const mapedCart = cart.map((el) => {
@@ -176,6 +254,15 @@ const Root = () => {
           handlePriceChange,
           handleSearchChange,
           search,
+          clearCartAndCartCounter,
+          isPaymentAlertOpen,
+          handlePaymentAlertClose,
+          handleFreeDeliveryChange,
+          freeDelivery,
+          selectProduct,
+          selectedProduct,
+          notSelect,
+          notSelectedProduct,
         }}
       >
         <MainTemplate>
