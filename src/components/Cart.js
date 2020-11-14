@@ -7,6 +7,7 @@ import ShopContext from "../context";
 import { CardUl, CardLi } from "./styledComponents/StyledCart";
 import { Link } from "react-router-dom";
 import { routes } from "../routes";
+import PayPalExpressBtn from "./PaypalButton";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -111,7 +112,10 @@ const Cart = () => {
               </Link>
             </div>
           ) : (
-            <p>{cartTotal}</p>
+            <>
+              <p>{cartTotal}</p>
+              <PayPalExpressBtn />
+            </>
           )}
         </div>
       </Fade>
