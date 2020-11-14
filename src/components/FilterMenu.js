@@ -1,4 +1,5 @@
 import React from "react";
+import FilterByFreeDelivery from "./filters/FilterByFreeDelivery";
 import FilterByName from "./filters/FilterByName";
 import FilterProductsByCategory from "./filters/FilterProductsByCategory";
 import FilterProductsByPrice from "./filters/FilterProductsByPrice";
@@ -9,6 +10,7 @@ const FilterMenu = () => {
       <FilterByName />
       <FilterProductsByCategory />
       <FilterProductsByPrice />
+      <FilterByFreeDelivery />
     </div>
   );
 };
