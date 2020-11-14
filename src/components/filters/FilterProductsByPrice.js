@@ -20,9 +20,9 @@ const marks = [
     label: "5000$",
   },
 ];
-function valuetext(priceRange) {
-  return `${priceRange}°C`;
-}
+// function valuetext(priceRange) {
+//   return `${priceRange}°C`;
+// }
 
 const FilterProductsByPrice = () => {
   const value = useContext(ShopContext);
@@ -40,7 +40,7 @@ const FilterProductsByPrice = () => {
         onChange={handlePriceChange}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
+        // getAriaValueText={valuetext}
         style={{ color: "#0088a9", marginLeft: "10px" }}
         max={5000}
         marks={marks}
