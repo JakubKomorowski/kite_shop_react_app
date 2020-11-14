@@ -10,7 +10,7 @@ import harnessImage2 from "../assets/images/harness-2.jpg";
 export const productsData = [
   {
     productName: "Crazyfly Raptor",
-    productPrice: 2299,
+    productPrice: 509,
     productQuantity: 1,
     productDescription:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis sint consequuntur eius! Ea veniam porro obcaecati cumque sed repellat quaerat!",
@@ -20,7 +20,7 @@ export const productsData = [
   },
   {
     productName: "Nobile NHP 2020",
-    productPrice: 1899,
+    productPrice: 347,
     productQuantity: 1,
     productDescription:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis sint consequuntur eius! Ea veniam porro obcaecati cumque sed repellat quaerat!",
@@ -30,7 +30,7 @@ export const productsData = [
   },
   {
     productName: "Cabrinha Switchblade 2020",
-    productPrice: 3399,
+    productPrice: 794,
     productQuantity: 1,
     productDescription:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis sint consequuntur eius! Ea veniam porro obcaecati cumque sed repellat quaerat!",
@@ -40,7 +40,7 @@ export const productsData = [
   },
   {
     productName: "Ozone Enduro V3",
-    productPrice: 4299,
+    productPrice: 964,
     productQuantity: 1,
     productDescription:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis sint consequuntur eius! Ea veniam porro obcaecati cumque sed repellat quaerat!",
@@ -50,7 +50,7 @@ export const productsData = [
   },
   {
     productName: "O'Neill Psycho Tech",
-    productPrice: 1499,
+    productPrice: 339.95,
     productQuantity: 1,
     productDescription:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis sint consequuntur eius! Ea veniam porro obcaecati cumque sed repellat quaerat!",
@@ -60,7 +60,7 @@ export const productsData = [
   },
   {
     productName: "Manera Meteor X10D",
-    productPrice: 1599,
+    productPrice: 334,
     productQuantity: 1,
     productDescription:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis sint consequuntur eius! Ea veniam porro obcaecati cumque sed repellat quaerat!",
@@ -70,7 +70,7 @@ export const productsData = [
   },
   {
     productName: "Mystic Majestic X",
-    productPrice: 2299,
+    productPrice: 419,
     productQuantity: 1,
     productDescription:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis sint consequuntur eius! Ea veniam porro obcaecati cumque sed repellat quaerat!",
@@ -80,12 +80,12 @@ export const productsData = [
   },
   {
     productName: "Ride Engine Elite Carbon",
-    productPrice: 2299,
+    productPrice: 249,
     productQuantity: 1,
     productDescription:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis sint consequuntur eius! Ea veniam porro obcaecati cumque sed repellat quaerat!",
     productImage: harnessImage2,
     productCategory: "harnesses",
-    freeDelivery: true,
+    freeDelivery: false,
   },
 ];
