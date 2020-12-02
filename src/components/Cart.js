@@ -113,7 +113,7 @@ const Cart = () => {
             </div>
           ) : (
             <>
-              <p>{cartTotal}</p>
+              <p>Total: {cartTotal}$</p>
               <PayPalExpressBtn />
             </>
           )}

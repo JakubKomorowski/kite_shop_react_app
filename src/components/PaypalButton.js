@@ -6,8 +6,7 @@ const PaypalButton = () => {
   const value = useContext(ShopContext);
   const { cartTotal, clearCartAndCartCounter, handleCartClose } = value;
   const client = {
-    sandbox:
-      "AX2LL6PcHSc3ZBtr6Uf3qmBMrM0WFtePmOkR8X1-ZMPi2r59ByzaWnIYEJF717yG-G5Rw2FHd-TBg4hO",
+    sandbox: process.env.REACT_APP_SANDBOX_ID,
     production: "",
   };
 
