@@ -8,7 +8,8 @@ import SingleProduct from "./pages/SingleProduct";
 import MainTemplate from "./templates/MainTemplate";
 import { routes } from "./routes";
 import ShopContext from "./context";
-import { productsData } from "./localData";
+// import { productsData } from "./localData";
+import { client } from "./contentful";
 
 const Root = () => {
   const getCartFromLocalStorage = () => {
@@ -36,7 +37,7 @@ const Root = () => {
 
   const [cart, setCart] = useState(getCartFromLocalStorage());
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [products, setProducts] = useState([...productsData]);
+  const [products, setProducts] = useState([]);
   const [cartCounter, setCartCounter] = useState(
     getCartCounterFromLocalStorage()
   );
@@ -49,12 +50,53 @@ const Root = () => {
 
   // filter states
   const [category, setCategory] = useState("all");
-  const [priceRange, setPriceRange] = useState([
-    Math.min(...products.map((el) => el.productPrice)),
-    Math.max(...products.map((el) => el.productPrice)),
-  ]);
+  const [priceRange, setPriceRange] = useState([]);
   const [search, setSearch] = useState("");
   const [freeDelivery, setFreeDelivery] = useState(false);
+
+  const setContentfulData = (contentfulItems) => {
+    const tempContentfulItems = contentfulItems.map((item) => {
+      const productId = item.sys.id;
+      const tempProductImage = item.fields.productImage.fields.file.url;
+
+      const product = {
+        productId,
+        ...item.fields,
+      };
+
+      product.productImage = tempProductImage;
+
+      return product;
+    });
+    console.log(tempContentfulItems);
+
+    setProducts(tempContentfulItems);
+
+    const tempContentfulItemsPrices = tempContentfulItems.map(
+      (el) => el.productPrice
+    );
+
+    setPriceRange([
+      Math.min(...tempContentfulItemsPrices),
+      Math.max(...tempContentfulItemsPrices),
+    ]);
+    setFilteredProducts(tempContentfulItems);
+  };
+
+  const getContentfulData = () => {
+    client
+      .getEntries({
+        content_type: "product",
+      })
+      .then((res) => {
+        setContentfulData(res.items);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  useEffect(() => {
+    getContentfulData();
+  }, []);
 
   useEffect(() => {
     setCartToLocalStorage();
@@ -185,7 +227,8 @@ const Root = () => {
   const calculateCartTotal = () => {
     let total = 0;
     cart.forEach((el) => {
-      total = total + el.productPrice * el.productQuantity;
+      total =
+        Math.round((total + el.productPrice * el.productQuantity) * 100) / 100;
     });
     setCartTotal(total);
   };
