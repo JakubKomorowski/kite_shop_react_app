@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
 
-export const CardUl = styled.ul`
+export const CartUl = styled.ul`
   list-style: none;
 `;
 
-export const CardLi = styled.li`
+export const CartLi = styled.li`
   padding: 1rem;
   display: flex;
   flex-direction: column;

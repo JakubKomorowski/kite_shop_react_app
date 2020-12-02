@@ -4,7 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import ShopContext from "../context";
-import { CardUl, CardLi } from "./styledComponents/StyledCart";
+import { CartUl, CartLi } from "./styledComponents/StyledCart";
 import { Link } from "react-router-dom";
 import { routes } from "../routes";
 import PayPalExpressBtn from "./PaypalButton";
@@ -61,7 +61,7 @@ const Cart = () => {
       <Fade in={isCartOpen}>
         <div className={classes.paper}>
           <h2 id="transition-modal-title">Your cart</h2>
-          <CardUl>
+          <CartUl>
             {cart.map(
               ({
                 productName,
@@ -70,7 +70,7 @@ const Cart = () => {
                 productQuantity,
               }) => {
                 return (
-                  <CardLi>
+                  <CartLi>
                     <img
                       src={productImage}
                       alt={productName}
@@ -98,11 +98,11 @@ const Cart = () => {
                     >
                       delete
                     </button>
-                  </CardLi>
+                  </CartLi>
                 );
               }
             )}
-          </CardUl>
+          </CartUl>
           {cartTotal === 0 ? (
             <div>
               <p>Cart is empty</p>
