@@ -14,8 +14,9 @@ const ProductsList = () => {
     <ProductsListWrapper>
       <ProductsListUl>
         {filteredProducts.map((product) => {
+          const { productId } = product;
           return (
-            <li>
+            <li key={productId}>
               <Product {...product} />
             </li>
           );

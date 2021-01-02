@@ -43,6 +43,7 @@ const Cart = () => {
     cartTotal,
     increaseProductQuantity,
     decreaseProductQuantity,
+    selectedProduct,
   } = value;
 
   return (
@@ -68,6 +69,7 @@ const Cart = () => {
                 productImage,
                 productPrice,
                 productQuantity,
+                kiteId,
               }) => {
                 return (
                   <CartLi>
@@ -78,22 +80,26 @@ const Cart = () => {
                     />
                     <p>{productName}</p>
                     <button
-                      onClick={() => decreaseProductQuantity(productName)}
+                      onClick={() =>
+                        decreaseProductQuantity(productName, kiteId)
+                      }
                       disabled={productQuantity === 1 ? true : false}
                     >
                       -
                     </button>
-
                     <p>{productQuantity}</p>
                     <button
-                      onClick={() => increaseProductQuantity(productName)}
+                      onClick={() =>
+                        increaseProductQuantity(productName, kiteId)
+                      }
                     >
                       +
                     </button>
                     <p>{productPrice}$</p>
+
                     <button
                       onClick={() =>
-                        deleteFromCart(productName, productQuantity)
+                        deleteFromCart(productName, productQuantity, kiteId)
                       }
                     >
                       delete

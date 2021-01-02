@@ -10,8 +10,11 @@ const GlobalStyle = createGlobalStyle`
     font-size: 62.5%
 } */
 body{
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fbfbfb;
+    overflow-x: hidden;
 }
+
 button {
     cursor: pointer;
     
