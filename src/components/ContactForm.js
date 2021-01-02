@@ -1,27 +1,45 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, { useContext } from "react";
+import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import emailjs from "emailjs-com";
-import styled from "styled-components";
 import GoogleMap from "./GoogleMap";
+import ShopContext from "../context";
+import { alertColorOptions } from "../utils/alertColorOptions";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Icon from "@material-ui/core/Icon";
+import {
+  StyledField,
+  StyledFieldWrapper,
+  StyledMessage,
+  StyledWrapper,
+  StyledFormik,
+  StyledTitle,
+  StyledErrorWrapper,
+  StyledGoogleMapWrapper,
+  StyledButton,
+} from "./styledComponents/StyledContactForm";
 
 const contactFormSchema = Yup.object().shape({
-  email: Yup.string().email("Wrong email").required("enter email"),
-  message: Yup.string().required("enter message"),
-  name: Yup.string().required("enter name"),
+  email: Yup.string()
+    .email("ENTER CORRECT EMAIL")
+    .required("PLEASE COMPLETE THIS REQUIRED FIELD"),
+  message: Yup.string().required("PLEASE COMPLETE THIS REQUIRED FIELD"),
+  name: Yup.string().required("PLEASE COMPLETE THIS REQUIRED FIELD"),
 });
 
-const StyledField = styled(Field)`
-  width: 500px;
-  display: block;
-`;
-
-const StyledErrorWrapper = styled.div`
-  color: red;
-`;
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(0),
+    },
+  },
+}));
 
 // emailjs
 const ContactForm = () => {
+  const value = useContext(ShopContext);
+
   const handleEmailSend = (e) => {
     e.preventDefault();
 
@@ -37,7 +55,11 @@ const ContactForm = () => {
         (result) => {
           console.log(result.text);
           if (result.text === "OK") {
-            alert("email sent");
+            value.showAndCloseAlertAfterTimeWithContentAndType(
+              3500,
+              "Message sent!",
+              alertColorOptions.messageSend
+            );
           }
         },
         (error) => {
@@ -46,9 +68,9 @@ const ContactForm = () => {
       );
     e.target.reset();
   };
-
+  const classes = useStyles();
   return (
-    <>
+    <StyledWrapper>
       <Formik
         initialValues={{
           email: "",
@@ -65,42 +87,59 @@ const ContactForm = () => {
         }}
       >
         {({ values }) => (
-          <Form onSubmit={handleEmailSend}>
-            <Field
-              name="name"
-              type="text"
-              placeholder="type your name.."
-              value={values.name}
-              required
-            />
+          <StyledFormik onSubmit={handleEmailSend}>
+            <StyledTitle>Contact Us</StyledTitle>
+            <StyledFieldWrapper>
+              <label for="name">Name:</label>
+              <StyledField
+                name="name"
+                type="text"
+                value={values.name}
+                required
+              />
+            </StyledFieldWrapper>
             <ErrorMessage name="name" />
-            <StyledField
-              name="email"
-              type="email"
-              placeholder="type email here.."
-              value={values.email}
-              required
-            />
+            <StyledFieldWrapper>
+              <label for="email">Email:</label>
+              <StyledField
+                name="email"
+                type="email"
+                value={values.email}
+                required
+              />
+            </StyledFieldWrapper>
             <StyledErrorWrapper>
               <ErrorMessage name="email" />
             </StyledErrorWrapper>
-
-            <Field
-              name="message"
-              type="text"
-              placeholder="type message here.."
-              value={values.message}
-              component="textarea"
-              required
-            />
+            <StyledFieldWrapper>
+              <label for="message">Message:</label>
+              <StyledMessage
+                name="message"
+                type="text"
+                value={values.message}
+                component="textarea"
+                required
+              />
+            </StyledFieldWrapper>
             <ErrorMessage name="message" />
-            <button type="submit">send</button>
-          </Form>
+
+            <StyledButton className={classes.root}>
+              <Button
+                endIcon={<Icon>send</Icon>}
+                type="submit"
+                variant="contained"
+                color="primary"
+              >
+                Send
+              </Button>
+            </StyledButton>
+          </StyledFormik>
         )}
       </Formik>
-
-      <GoogleMap />
-    </>
+      <StyledGoogleMapWrapper>
+        <GoogleMap />
+      </StyledGoogleMapWrapper>
+    </StyledWrapper>
   );
 };
 
