@@ -10,7 +10,12 @@ import {
 
 const CategoriesList = () => {
   const value = useContext(ShopContext);
-  const { oneOfCategory, selectCategory } = value;
+  const {
+    oneOfCategory,
+    selectCategory,
+    handleFilterDrawerClose,
+    resetFilters,
+  } = value;
 
   return (
     <>
@@ -18,7 +23,11 @@ const CategoriesList = () => {
         {oneOfCategory.map(({ productCategory, productImage, productName }) => {
           return (
             <CategoriesLink
-              onClick={() => selectCategory(productCategory)}
+              onClick={() => {
+                selectCategory(productCategory);
+                handleFilterDrawerClose();
+                resetFilters();
+              }}
               to={`categories/${productCategory}`}
             >
               <CategoriesLi>

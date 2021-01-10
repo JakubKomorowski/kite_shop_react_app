@@ -35,6 +35,7 @@ const Navbar = () => {
     windowSize,
     handleNavMenuClose,
     resetFilters,
+    handleFilterDrawerClose,
   } = value;
 
   return (
@@ -51,7 +52,13 @@ const Navbar = () => {
         <StyledCartAndLiWrapper>
           <StyledLiWrapper navMenuOpen={navMenuOpen}>
             <StyledNavLi onClick={handleNavMenuClose} navMenuOpen={navMenuOpen}>
-              <StyledNavLink to={routes.home} onClick={resetFilters}>
+              <StyledNavLink
+                to={routes.home}
+                onClick={() => {
+                  handleFilterDrawerClose();
+                  resetFilters();
+                }}
+              >
                 Home
               </StyledNavLink>
             </StyledNavLi>
@@ -59,7 +66,15 @@ const Navbar = () => {
               <StyledNavLink to={routes.contact}>Contact</StyledNavLink>
             </StyledNavLi>
             <StyledNavLi onClick={handleNavMenuClose} navMenuOpen={navMenuOpen}>
-              <StyledNavLink to={routes.products}>Products</StyledNavLink>
+              <StyledNavLink
+                to={routes.products}
+                onClick={() => {
+                  handleFilterDrawerClose();
+                  resetFilters();
+                }}
+              >
+                Products
+              </StyledNavLink>
             </StyledNavLi>
             {windowSize ? (
               <StyledNavLi
@@ -84,6 +99,8 @@ const Navbar = () => {
                         <StyledNavLink
                           onClick={() => {
                             selectCategory(productCategory);
+                            handleFilterDrawerClose();
+                            resetFilters();
                           }}
                           to={`${routes.categories}/${productCategory}`}
                         >

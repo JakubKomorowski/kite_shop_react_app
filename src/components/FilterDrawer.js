@@ -28,7 +28,12 @@ const FilterDrawer = () => {
   const classes = useStyles();
 
   const value = useContext(ShopContext);
-  const { windowSize, handleFilterDrawerOpen, filterDrawerOpen } = value;
+  const {
+    windowSize,
+    handleFilterDrawerOpen,
+    filterDrawerOpen,
+    handleFilterDrawerClose,
+  } = value;
 
   const styleArrow = {
     position: "absolute",
@@ -72,7 +77,7 @@ const FilterDrawer = () => {
             <StyledDrawerWrapper open={filterDrawerOpen}>
               <IoMdArrowDropleft
                 style={styleArrow}
-                onClick={handleFilterDrawerOpen}
+                onClick={handleFilterDrawerClose}
               />
               <FilterMenuWrapper>
                 <FilterMenu />

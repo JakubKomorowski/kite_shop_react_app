@@ -139,6 +139,7 @@ const Root = () => {
 
   useEffect(() => {
     window.addEventListener("popstate", resetFilters);
+    window.addEventListener("popstate", handleFilterDrawerClose);
   }, []);
 
   const handleFreeDeliveryChange = (e) => {
@@ -190,7 +191,11 @@ const Root = () => {
   };
 
   const handleFilterDrawerOpen = () => {
-    setFilterDrawerOpen(!filterDrawerOpen);
+    setFilterDrawerOpen(true);
+  };
+
+  const handleFilterDrawerClose = () => {
+    setFilterDrawerOpen(false);
   };
 
   const handleNewsletterClose = () => {
@@ -553,6 +558,7 @@ const Root = () => {
           handleIsCartAlertWoSizeClose,
           isCartAlertWoSizeOpen,
           resetFilters,
+          handleFilterDrawerClose,
         }}
       >
         <MainTemplate>
