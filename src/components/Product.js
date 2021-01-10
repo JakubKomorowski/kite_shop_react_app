@@ -14,22 +14,16 @@ import {
 const Product = ({
   productName,
   productImage,
-  kiteId,
   productPrice,
   freeDelivery,
   productCategory,
 }) => {
   const value = useContext(ShopContext);
   const {
-    addToCart,
-    increaseCartCounter,
     handleIsCartAlertOpen,
     selectProduct,
     notSelect,
-    kiteIdValue,
-    handleProductQuantityInCart,
     handleKiteIdValueDefault,
-    selectKite,
   } = value;
 
   return (
@@ -41,7 +35,6 @@ const Product = ({
               selectProduct(productName);
               notSelect(productName, productCategory);
               handleKiteIdValueDefault();
-              // selectKite(productName);
             }}
             src={productImage}
             alt={productName}
@@ -56,22 +49,9 @@ const Product = ({
       <div>
         <AddToCartBtn
           onClick={() => {
-            productCategory !== "kites"
-              ? handleProductQuantityInCart(productName, kiteId)
-              : selectProduct(productName);
-
             selectProduct(productName);
-
             handleIsCartAlertOpen();
             handleKiteIdValueDefault();
-            // increaseCartCounter();
-            productCategory !== "kites"
-              ? increaseCartCounter()
-              : selectProduct(productName);
-
-            // productCategory !== "kites"
-            //   ? addToCart(productName, kiteId)
-            //   : selectProduct(productName);
           }}
         >
           add to cart
@@ -82,9 +62,6 @@ const Product = ({
               selectProduct(productName);
               notSelect(productName, productCategory);
               handleKiteIdValueDefault();
-              // productCategory !== "kites"
-              //   ? addToCart(productName, kiteId)
-              //   : selectProduct(productName);
             }}
           >
             view

@@ -8,8 +8,8 @@ import ShopContext from "../context";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+    margin: theme.spacing(0),
+    minWidth: 180,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -20,18 +20,7 @@ const SizeSelector = () => {
   const classes = useStyles();
 
   const value = useContext(ShopContext);
-  const {
-    selectedProduct,
-    kiteIdValue,
-    handleKiteIdValueChange,
-    allProducts,
-    selectProduct,
-    addToCart,
-    selectKite,
-    selectedKite,
-  } = value;
-
-  const { productCategory, productName, kiteId } = selectedProduct;
+  const { selectedProduct, kiteIdValue, handleKiteIdValueChange } = value;
 
   const mappedKiteId = [
     ...new Set(
@@ -51,19 +40,34 @@ const SizeSelector = () => {
           labelId="demo-simple-select-outlined-label"
           onChange={(e) => {
             handleKiteIdValueChange(e);
-            // selectKite(productName, kiteIdValue);
           }}
           id="demo-simple-select-outlined"
           value={kiteIdValue}
           label="Size"
         >
-          {mappedKiteId.map((el) => {
-            return (
-              <MenuItem value={el}>
-                {el === 1 ? "5m" : el === 2 ? "7m" : "9m"}
-              </MenuItem>
-            );
-          })}
+          {selectedProduct[0].productCategory === "kites"
+            ? mappedKiteId.map((el) => {
+                return (
+                  <MenuItem value={el}>
+                    {el === 1 ? "5m" : el === 2 ? "7m" : "9m"}
+                  </MenuItem>
+                );
+              })
+            : selectedProduct[0].productCategory === "boards"
+            ? mappedKiteId.map((el) => {
+                return (
+                  <MenuItem value={el}>
+                    {el === 1 ? "136cm" : el === 2 ? "142cm" : "148cm"}
+                  </MenuItem>
+                );
+              })
+            : mappedKiteId.map((el) => {
+                return (
+                  <MenuItem value={el}>
+                    {el === 1 ? "S" : el === 2 ? "M" : "L"}
+                  </MenuItem>
+                );
+              })}
         </Select>
       </FormControl>
     </div>

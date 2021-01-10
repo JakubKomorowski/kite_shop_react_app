@@ -4,6 +4,7 @@ import CartAlert from "../components/CartAlert";
 import FilterDrawer from "../components/FilterDrawer";
 import ProductsList from "../components/ProductsList";
 import Sort from "../components/sort/Sort";
+import { StyledCartAlertWoSize } from "../components/styledComponents/StyledSingleProduct";
 import ShopContext from "../context";
 
 const FilterAndSortWrapper = styled.div`
@@ -32,6 +33,7 @@ const AllProductsTitle = styled.h1`
   display: flex;
   justify-content: center;
   margin: 1rem;
+  color: ${({ theme }) => theme.dark};
 `;
 
 const Products = () => {
@@ -67,6 +69,7 @@ const Products = () => {
 
       <ProductsList />
       <CartAlert />
+      <StyledCartAlertWoSize />
     </>
   );
 };

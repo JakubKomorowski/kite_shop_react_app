@@ -44,6 +44,11 @@ const PaypalButton = () => {
       onCancel={onCancelPayment}
       onError={onError}
       total={cartTotal}
+      style={{
+        shape: "rect",
+        size: "medium",
+        color: "white",
+      }}
     />
   );
 };

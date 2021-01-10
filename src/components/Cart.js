@@ -4,10 +4,27 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import ShopContext from "../context";
-import { CartUl, CartLi } from "./styledComponents/StyledCart";
-import { Link } from "react-router-dom";
-import { routes } from "../routes";
+import {
+  CartUl,
+  CartLi,
+  CartImg,
+  CartProductQuantity,
+  CartAddOneButton,
+  CartProductName,
+  CartProductPrice,
+  CartImgWrapper,
+  ContinueShoppingBtn,
+  CartBtnContainer,
+  ContinueShoppingBtnWrapper,
+  CartTotal,
+  AddOneWrapper,
+  CartEmpty,
+  CartEmptyWrapper,
+  CartInfoWrapper,
+} from "./styledComponents/StyledCart";
 import PayPalExpressBtn from "./PaypalButton";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -21,9 +38,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
     outline: "none",
     borderRadius: "20px",
-    height: "84vh",
-    width: "24vw",
-    overflowY: "scroll",
+    maxHeight: "84vh",
+    overflowY: "auto",
     border: "none",
     display: "flex",
     flexDirection: "column",
@@ -43,7 +59,6 @@ const Cart = () => {
     cartTotal,
     increaseProductQuantity,
     decreaseProductQuantity,
-    selectedProduct,
   } = value;
 
   return (
@@ -70,57 +85,93 @@ const Cart = () => {
                 productPrice,
                 productQuantity,
                 kiteId,
+                productCategory,
+                productId,
               }) => {
                 return (
-                  <CartLi>
-                    <img
-                      src={productImage}
-                      alt={productName}
-                      style={{ width: "100px", height: "100px" }}
-                    />
-                    <p>{productName}</p>
-                    <button
-                      onClick={() =>
-                        decreaseProductQuantity(productName, kiteId)
-                      }
-                      disabled={productQuantity === 1 ? true : false}
-                    >
-                      -
-                    </button>
-                    <p>{productQuantity}</p>
-                    <button
-                      onClick={() =>
-                        increaseProductQuantity(productName, kiteId)
-                      }
-                    >
-                      +
-                    </button>
-                    <p>{productPrice}$</p>
+                  <CartLi key={productId}>
+                    <CartImgWrapper>
+                      <CartImg src={productImage} alt={productName} />
+                    </CartImgWrapper>
+                    <CartInfoWrapper>
+                      <CartProductName>{productName}</CartProductName>
+                      <p>
+                        Size:{" "}
+                        {productCategory === "kites"
+                          ? kiteId === 1
+                            ? "5m"
+                            : kiteId === 2
+                            ? "7m"
+                            : "9m"
+                          : productCategory === "boards"
+                          ? kiteId === 1
+                            ? "136cm"
+                            : kiteId === 2
+                            ? "142cm"
+                            : "148cm"
+                          : kiteId === 1
+                          ? "S"
+                          : kiteId === 2
+                          ? "M"
+                          : "L"}
+                      </p>
+                    </CartInfoWrapper>
+                    <AddOneWrapper>
+                      <CartAddOneButton
+                        onClick={() =>
+                          decreaseProductQuantity(productName, kiteId)
+                        }
+                        disabled={productQuantity === 1 ? true : false}
+                      >
+                        -
+                      </CartAddOneButton>
+                      <CartProductQuantity>
+                        {productQuantity}
+                      </CartProductQuantity>
+                      <CartAddOneButton
+                        onClick={() =>
+                          increaseProductQuantity(productName, kiteId)
+                        }
+                      >
+                        +
+                      </CartAddOneButton>
+                    </AddOneWrapper>
 
-                    <button
+                    <CartProductPrice>${productPrice}</CartProductPrice>
+
+                    <IconButton
                       onClick={() =>
                         deleteFromCart(productName, productQuantity, kiteId)
                       }
+                      aria-label="delete"
+                      className={classes.margin}
                     >
-                      delete
-                    </button>
+                      <DeleteIcon fontSize="large" />
+                    </IconButton>
                   </CartLi>
                 );
               }
             )}
           </CartUl>
-          {cartTotal === 0 ? (
-            <div>
-              <p>Cart is empty</p>
 
-              <Link to={routes.products}>
-                <button onClick={handleCartClose}>Go to products</button>
-              </Link>
-            </div>
+          {cartTotal === 0 ? (
+            <CartEmptyWrapper>
+              <CartEmpty>Cart is empty</CartEmpty>
+              <ContinueShoppingBtn onClick={handleCartClose}>
+                Continue Shopping
+              </ContinueShoppingBtn>
+            </CartEmptyWrapper>
           ) : (
             <>
-              <p>Total: {cartTotal}$</p>
-              <PayPalExpressBtn />
+              <CartTotal>Total: ${cartTotal}</CartTotal>
+              <CartBtnContainer>
+                <ContinueShoppingBtnWrapper>
+                  <ContinueShoppingBtn onClick={handleCartClose}>
+                    Continue Shopping
+                  </ContinueShoppingBtn>
+                </ContinueShoppingBtnWrapper>
+                <PayPalExpressBtn />
+              </CartBtnContainer>
             </>
           )}
         </div>

@@ -58,7 +58,7 @@ const ContactForm = () => {
             value.showAndCloseAlertAfterTimeWithContentAndType(
               3500,
               "Message sent!",
-              alertColorOptions.messageSend
+              alertColorOptions.messageSent
             );
           }
         },
@@ -90,7 +90,7 @@ const ContactForm = () => {
           <StyledFormik onSubmit={handleEmailSend}>
             <StyledTitle>Contact Us</StyledTitle>
             <StyledFieldWrapper>
-              <label for="name">Name:</label>
+              <label htmlFor="name">Name</label>
               <StyledField
                 name="name"
                 type="text"
@@ -100,7 +100,7 @@ const ContactForm = () => {
             </StyledFieldWrapper>
             <ErrorMessage name="name" />
             <StyledFieldWrapper>
-              <label for="email">Email:</label>
+              <label htmlFor="email">Email</label>
               <StyledField
                 name="email"
                 type="email"
@@ -112,7 +112,7 @@ const ContactForm = () => {
               <ErrorMessage name="email" />
             </StyledErrorWrapper>
             <StyledFieldWrapper>
-              <label for="message">Message:</label>
+              <label htmlFor="message">Message</label>
               <StyledMessage
                 name="message"
                 type="text"

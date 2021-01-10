@@ -4,19 +4,16 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
-// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FilterMenu from "./FilterMenu";
 import { IoMdArrowDropdown, IoMdArrowDropleft } from "react-icons/io";
 import { BsFilter } from "react-icons/bs";
 import {
   StyledDrawerWrapper,
   FilterMenuWrapper,
-  Wrapper,
 } from "./styledComponents/StyledFilterDrawer";
 import ShopContext from "../context";
 import { IconContext } from "react-icons";
 
-// MdExpandMore,
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "300px",

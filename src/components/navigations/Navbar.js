@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import ShopContext from "../../context";
 import { routes } from "../../routes";
 import {
@@ -15,6 +14,7 @@ import {
   StyledName,
   StyledLogoLink,
   StyledBurger,
+  StyledCartAndLiWrapper,
 } from "../styledComponents/StyledNavbar";
 import cartIcon from "../../assets/icons/shopping-bag.svg";
 import kiteLogo from "../../assets/icons/kiteLogo.png";
@@ -47,56 +47,62 @@ const Navbar = () => {
             <StyledName>Kite Shop</StyledName>
           </StyledLogoWrapper>
         </StyledLogoLink>
-        <StyledLiWrapper navMenuOpen={navMenuOpen}>
-          <StyledNavLi onClick={handleNavMenuClose} navMenuOpen={navMenuOpen}>
-            <StyledNavLink to={routes.home}>Home</StyledNavLink>
-          </StyledNavLi>
-          <StyledNavLi onClick={handleNavMenuClose} navMenuOpen={navMenuOpen}>
-            <StyledNavLink to={routes.contact}>Contact</StyledNavLink>
-          </StyledNavLi>
-          <StyledNavLi onClick={handleNavMenuClose} navMenuOpen={navMenuOpen}>
-            <StyledNavLink to={routes.products}>Products</StyledNavLink>
-          </StyledNavLi>
-          {windowSize ? (
+        <StyledCartAndLiWrapper>
+          <StyledLiWrapper navMenuOpen={navMenuOpen}>
             <StyledNavLi onClick={handleNavMenuClose} navMenuOpen={navMenuOpen}>
-              <StyledNavLink to={routes.categories}>Categories</StyledNavLink>
+              <StyledNavLink to={routes.home}>Home</StyledNavLink>
             </StyledNavLi>
-          ) : (
-            <StyledNavLi
-              navMenuOpen={navMenuOpen}
-              onMouseEnter={handleMenuOpen}
-              onMouseLeave={handleMenuClose}
-            >
-              <StyledNavLink to={routes.categories}>
-                Categories <IoMdArrowDropdown />
-              </StyledNavLink>
-              <StyledDropdownUl menu={menuOpen}>
-                {oneOfCategory.map(({ productCategory }) => {
-                  return (
-                    <StyledDropdownLi>
-                      <StyledNavLink
-                        onClick={() => {
-                          selectCategory(productCategory);
-                        }}
-                        to={`${routes.categories}/${productCategory}`}
-                      >
-                        {productCategory}
-                      </StyledNavLink>
-                    </StyledDropdownLi>
-                  );
-                })}
-              </StyledDropdownUl>
+            <StyledNavLi onClick={handleNavMenuClose} navMenuOpen={navMenuOpen}>
+              <StyledNavLink to={routes.contact}>Contact</StyledNavLink>
             </StyledNavLi>
-          )}
-        </StyledLiWrapper>
-        <StyledNavbarCart onClick={handleCartOpen} cartIcon={cartIcon}>
-          {cartCounter}
-        </StyledNavbarCart>
-        <StyledBurger onClick={handleNavMenuOpen} navMenuOpen={navMenuOpen}>
-          <div className="line1"></div>
-          <div className="line2"></div>
-          <div className="line3"></div>
-        </StyledBurger>
+            <StyledNavLi onClick={handleNavMenuClose} navMenuOpen={navMenuOpen}>
+              <StyledNavLink to={routes.products}>Products</StyledNavLink>
+            </StyledNavLi>
+            {windowSize ? (
+              <StyledNavLi
+                onClick={handleNavMenuClose}
+                navMenuOpen={navMenuOpen}
+              >
+                <StyledNavLink to={routes.categories}>Categories</StyledNavLink>
+              </StyledNavLi>
+            ) : (
+              <StyledNavLi
+                navMenuOpen={navMenuOpen}
+                onMouseEnter={handleMenuOpen}
+                onMouseLeave={handleMenuClose}
+              >
+                <StyledNavLink to={routes.categories}>
+                  Categories <IoMdArrowDropdown />
+                </StyledNavLink>
+                <StyledDropdownUl menu={menuOpen}>
+                  {oneOfCategory.map(({ productCategory }) => {
+                    return (
+                      <StyledDropdownLi>
+                        <StyledNavLink
+                          onClick={() => {
+                            selectCategory(productCategory);
+                          }}
+                          to={`${routes.categories}/${productCategory}`}
+                        >
+                          {productCategory}
+                        </StyledNavLink>
+                      </StyledDropdownLi>
+                    );
+                  })}
+                </StyledDropdownUl>
+              </StyledNavLi>
+            )}
+          </StyledLiWrapper>
+          <StyledNavbarCart onClick={handleCartOpen} cartIcon={cartIcon}>
+            {cartCounter}
+          </StyledNavbarCart>
+
+          <StyledBurger onClick={handleNavMenuOpen} navMenuOpen={navMenuOpen}>
+            <div className="line1"></div>
+            <div className="line2"></div>
+            <div className="line3"></div>
+          </StyledBurger>
+        </StyledCartAndLiWrapper>
       </StyledNavUl>
     </nav>
   );

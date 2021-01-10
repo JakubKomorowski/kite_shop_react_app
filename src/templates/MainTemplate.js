@@ -1,37 +1,36 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Cart from "../components/Cart";
 import Navbar from "../components/navigations/Navbar";
 import GlobalStyle from "../theme/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { mainTheme } from "../theme/mainTheme";
 import Alert from "../components/Alert";
-import ShopContext from "../context";
 import NewsletterModal from "../components/NewsletterModal";
 import styled from "styled-components";
-import arrowImg from "../assets/icons/up-arrow.svg";
 import { animateScroll as scroll } from "react-scroll";
+import Footer from "../components/navigations/Footer";
+import { IoIosArrowDropup } from "react-icons/io";
 
-const StyledGoTopBtn = styled.button`
-  background-color: ${({ theme }) => theme.dark};
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  outline: none;
-  border: none;
-  background-image: url(${({ icon }) => icon});
-  background-size: 70%;
-  background-repeat: no-repeat;
-  background-position: 50%;
+const StyledGoTopTwoBtn = styled(IoIosArrowDropup)`
   position: fixed;
   right: 4%;
   bottom: 5%;
-  z-index: 1000;
+  cursor: pointer;
+`;
+
+const GlobalWrapper = styled.div`
+  overflow-x: hidden;
+  position: relative;
+`;
+
+const Children = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 66px - 50px - 50px);
 `;
 
 const MainTemplate = ({ children }) => {
   const [isScrollArrowVisible, setIsScrollArrowVisible] = useState(false);
-
-  const value = useContext(ShopContext);
 
   const showScrollArrow = () => {
     if (!isScrollArrowVisible && window.pageYOffset > 400) {
@@ -44,24 +43,20 @@ const MainTemplate = ({ children }) => {
   window.addEventListener("scroll", showScrollArrow);
 
   return (
-    <>
+    <GlobalWrapper>
       <GlobalStyle />
       <ThemeProvider theme={mainTheme}>
         <Navbar />
         <Alert />
         <NewsletterModal />
-
         {isScrollArrowVisible ? (
-          <StyledGoTopBtn
-            icon={arrowImg}
-            onClick={() => scroll.scrollToTop()}
-          />
+          <StyledGoTopTwoBtn size={41} onClick={() => scroll.scrollToTop()} />
         ) : null}
         <Cart />
-
-        {children}
+        <Children>{children}</Children>
+        <Footer />
       </ThemeProvider>
-    </>
+    </GlobalWrapper>
   );
 };
 
