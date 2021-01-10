@@ -2,7 +2,6 @@
 
 ## Overview
 
-A simple dynamic website created for...
 This project uses React.js as main framework, React-Router-Dom for navigation, Contentful CMS from dynamically updating the data and Styled-Components for layout styles.
 
 ### Live demo:
@@ -45,18 +44,8 @@ npm start
 
 Browser will automatically open on localhost:3000
 
-## Website Inspiration:
-
-link
-
-### Photos and Icons I used:
-
-All of the photos and icons were taken from:
-link
-link
-link
-and they are free to commercial use
-
 If you have any problems to run the project, feel free to contact me by email:
 
 ### email
+
+jakub.komorowski01@gmail.com
