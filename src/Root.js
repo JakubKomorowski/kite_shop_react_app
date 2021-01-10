@@ -8,7 +8,6 @@ import SingleProduct from "./pages/SingleProduct";
 import MainTemplate from "./templates/MainTemplate";
 import { routes } from "./routes";
 import ShopContext from "./context";
-// import { productsData } from "./localData";
 import { client } from "./contentful";
 import Category from "./pages/Category";
 import {
@@ -96,7 +95,7 @@ const Root = () => {
     }, []);
     setOneOfCategory([...uniq]);
 
-    setPriceRange([0, 1500]);
+    setPriceRange([0, 1000]);
     setFilteredProducts(newContentfulItems);
     setAllProducts(tempContentfulItems);
   };
@@ -136,6 +135,10 @@ const Root = () => {
   useEffect(() => {
     window.addEventListener("resize", updateWindowWidth);
     return () => window.removeEventListener("resize", updateWindowWidth);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("popstate", resetFilters);
   }, []);
 
   const handleFreeDeliveryChange = (e) => {
@@ -259,6 +262,13 @@ const Root = () => {
   useEffect(() => {
     filterProducts();
   }, [category, priceRange, search, freeDelivery, sortBy]);
+
+  const resetFilters = () => {
+    setCategory("All");
+    setPriceRange([0, 1000]);
+    setSearch("");
+    setFreeDelivery(false);
+  };
 
   const filterCategoryProducts = () => {
     let tempProducts = getSelectedCategoryFromLocalStorage();
@@ -542,6 +552,7 @@ const Root = () => {
           handleIsCartAlertWoSizeOpen,
           handleIsCartAlertWoSizeClose,
           isCartAlertWoSizeOpen,
+          resetFilters,
         }}
       >
         <MainTemplate>

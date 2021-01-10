@@ -34,6 +34,7 @@ const Navbar = () => {
     navMenuOpen,
     windowSize,
     handleNavMenuClose,
+    resetFilters,
   } = value;
 
   return (
@@ -50,7 +51,9 @@ const Navbar = () => {
         <StyledCartAndLiWrapper>
           <StyledLiWrapper navMenuOpen={navMenuOpen}>
             <StyledNavLi onClick={handleNavMenuClose} navMenuOpen={navMenuOpen}>
-              <StyledNavLink to={routes.home}>Home</StyledNavLink>
+              <StyledNavLink to={routes.home} onClick={resetFilters}>
+                Home
+              </StyledNavLink>
             </StyledNavLi>
             <StyledNavLi onClick={handleNavMenuClose} navMenuOpen={navMenuOpen}>
               <StyledNavLink to={routes.contact}>Contact</StyledNavLink>
