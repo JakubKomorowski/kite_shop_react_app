@@ -377,7 +377,7 @@ const Root = () => {
     selectProduct(name);
   };
 
-  const selectProduct = (name, kiteId) => {
+  const selectProduct = (name) => {
     const filteredProduct = allProducts.filter((el) => el.productName === name);
     console.log(filteredProduct.kiteId);
     setSelectedProduct([...filteredProduct]);

@@ -29,7 +29,7 @@ export const getSelectedProductFromLocalStorage = () => {
       localStorage.getItem("selectedProduct")
     );
   } else {
-    selectedProductLocalStorage = {};
+    selectedProductLocalStorage = [];
   }
   return selectedProductLocalStorage;
 };
