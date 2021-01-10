@@ -15,6 +15,9 @@ export const CategoriesLi = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 300px;
+  background-color: white;
+  padding: 1rem;
   &:hover h2 {
     color: ${({ theme }) => theme.primaryBlue};
   }

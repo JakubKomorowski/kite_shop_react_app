@@ -7,6 +7,7 @@ export const StyledNavUl = styled.ul`
   align-items: center;
   padding: 0.5rem 3rem;
   list-style: none;
+  justify-content: space-between;
   -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.1);
@@ -49,6 +50,7 @@ export const StyledDropdownUl = styled.ul`
   text-decoration: none;
   padding: 20px 0;
   text-transform: capitalize;
+  right: 67px;
 `;
 
 export const StyledDropdownLi = styled.li`
@@ -57,7 +59,7 @@ export const StyledDropdownLi = styled.li`
   width: 160px;
   background-color: white;
   padding: 5px 16px 10px;
-  z-index: 2;
+  z-index: 10;
 `;
 
 export const StyledLogo = styled.div`
@@ -100,7 +102,7 @@ export const StyledName = styled.h1`
 export const StyledLogoLink = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.dark};
-  flex-grow: 2;
+  /* flex-grow: 2; */
 `;
 
 export const StyledBurger = styled.div`
@@ -137,4 +139,9 @@ export const StyledBurger = styled.div`
         ? "rotate(45deg) translate(-5px,-6px)"
         : "rotate(0deg)"};
   }
+`;
+
+export const StyledCartAndLiWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;

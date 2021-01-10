@@ -10,7 +10,7 @@ export const StyledDrawerWrapper = styled.div`
   width: 300px;
   transition: all 0.4s ease-in-out;
   transform: ${(props) => (props.open ? "translateX(300px)" : "0px")};
-  height: 100vh;
+  height: 90vh;
   background-color: white;
   left: -300px;
   top: 68px;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ProductsListWrapper = styled.div`
   display: grid;
-  grid-template-columns: 15% 70% 15%;
+  grid-template-columns: 14% 72% 14%;
   @media (max-width: 1000px) {
     grid-template-columns: 7% 86% 7%;
   }
