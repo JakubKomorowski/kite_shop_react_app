@@ -29,6 +29,7 @@ const Root = () => {
   );
   const [cartTotal, setCartTotal] = useState(0);
   const [isCartAlertOpen, setIsCartAlertOpen] = useState(false);
+  const [isCartAlertWoSizeOpen, setIsCartAlertWoSizeOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(
     getSelectedProductFromLocalStorage()
   );
@@ -193,16 +194,14 @@ const Root = () => {
     setOpenNewsletter(false);
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     handleNewsletterOpen();
-  //   }, 10000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      handleNewsletterOpen();
+    }, 15000);
+  }, []);
 
   const filterProducts = () => {
     let tempProducts = [...products];
-
-    console.log(tempProducts);
 
     //delivery
     if (freeDelivery) {
@@ -253,7 +252,6 @@ const Root = () => {
         b.productName.localeCompare(a.productName)
       );
     }
-    console.log(tempProducts);
 
     setFilteredProducts(tempProducts);
   };
@@ -308,7 +306,6 @@ const Root = () => {
         b.productName.localeCompare(a.productName)
       );
     }
-    console.log(tempProducts);
     setSelectedCategory(tempProducts);
   };
 
@@ -338,22 +335,16 @@ const Root = () => {
     setIsCartAlertOpen(true);
   };
 
-  const handleIsCartAlertClose = () => {
-    setIsCartAlertOpen(false);
+  const handleIsCartAlertWoSizeOpen = () => {
+    setIsCartAlertWoSizeOpen(true);
   };
 
-  const handleProductQuantityInCart = (name, kiteId) => {
-    if (cart.length !== 0) {
-      const tempCart = [...cart];
+  const handleIsCartAlertWoSizeClose = () => {
+    setIsCartAlertWoSizeOpen(false);
+  };
 
-      tempCart.forEach((item) => {
-        if (item.productName === name && item.kiteId === kiteId) {
-          item.productQuantity = item.productQuantity + 1;
-        }
-      });
-      setCart([...new Set([...tempCart])]);
-      // setCart([...tempCart]);
-    }
+  const handleIsCartAlertClose = () => {
+    setIsCartAlertOpen(false);
   };
 
   const addToCart = (name, kiteId) => {
@@ -361,66 +352,27 @@ const Root = () => {
       (el) => el.productName === name && el.kiteId === kiteId
     );
 
-    const tempCart = JSON.parse(localStorage.getItem("cart"));
-    console.log(tempCart);
-    const newCart = tempCart.map((el) => {
-      if (el.productName === filteredProduct.productName) {
-        console.log("JEST");
-        el.productQuantity = el.productQuantity + 1;
-      }
-      return el;
-    });
-
-    console.log(newCart);
-
-    const filteredNewCart = newCart.filter((el) => el !== undefined);
-    console.log(filteredNewCart);
-
-    console.log(JSON.parse(localStorage.getItem("cart")));
-
-    //TODO: localstorage ref
-
-    if (tempCart.length !== 0) {
-      const testCart = [...new Set([...cart, filteredProduct])];
-      console.log(testCart);
-      const formatedCart = testCart.map((el) => {
-        if (el.productName === filteredProduct.productName) {
-          if (el.productQuantity === 1) {
-            return null;
-          } else {
-            return el;
-          }
-        } else {
-          return el;
+    if (cart.length !== 0) {
+      cart.forEach((item) => {
+        if (item.productName === name && item.kiteId === kiteId) {
+          item.productQuantity = item.productQuantity + 1;
         }
       });
+    }
 
-      const finalCart = formatedCart.filter((el) => el !== null);
-      console.log(finalCart);
-      setCart([...new Set([...finalCart])]);
+    let isProductAlreadyInCart;
+
+    cart.forEach((el) => {
+      if (el.productName === name && el.kiteId === kiteId) {
+        isProductAlreadyInCart = true;
+      }
+    });
+
+    if (isProductAlreadyInCart) {
+      setCart([...new Set([...cart])]);
     } else {
       setCart([...new Set([...cart, filteredProduct])]);
     }
-
-    // const testCart = [...new Set([...cart, filteredProduct])];
-    // const formatedCart = testCart.map((el) => {
-    //   if (el.productName === filteredProduct.productName) {
-    //     if (el.productQuantity === 1) {
-    //       return null;
-    //     } else {
-    //       return el;
-    //     }
-    //   } else {
-    //     return filteredProduct;
-    //   }
-    // });
-
-    //   const finalCart = formatedCart.filter((el) => el !== null);
-    //   console.log(formatedCart);
-    //   setCart([...new Set([...finalCart])]);
-
-    //   console.log(filteredProduct);
-    //   console.log(cart);
 
     selectProduct(name);
   };
@@ -428,7 +380,7 @@ const Root = () => {
   const selectProduct = (name, kiteId) => {
     const filteredProduct = allProducts.filter((el) => el.productName === name);
     console.log(filteredProduct.kiteId);
-    setSelectedProduct(filteredProduct);
+    setSelectedProduct([...filteredProduct]);
     localStorage.setItem("selectedProduct", JSON.stringify(filteredProduct));
   };
 
@@ -456,7 +408,7 @@ const Root = () => {
 
   const deleteFromCart = (name, quantity, kiteId) => {
     const filteredProduct = cart.filter((el) => {
-      if (el.productName === name && el.kiteId === kiteIdValue) {
+      if (el.productName === name && el.kiteId === kiteId) {
         el.productQuantity = 1;
       }
       return el.productName !== name || el.kiteId !== kiteId;
@@ -562,7 +514,6 @@ const Root = () => {
           handleFreeDeliveryChange,
           freeDelivery,
           selectProduct,
-          // selectedProduct,
           notSelect,
           notSelectedProduct,
           handleSortChange,
@@ -585,10 +536,12 @@ const Root = () => {
           handleKiteIdValueChange,
           handleNavMenuOpen,
           navMenuOpen,
-          handleProductQuantityInCart,
           handleKiteIdValueDefault,
           handleNavMenuClose,
           allProducts,
+          handleIsCartAlertWoSizeOpen,
+          handleIsCartAlertWoSizeClose,
+          isCartAlertWoSizeOpen,
         }}
       >
         <MainTemplate>
