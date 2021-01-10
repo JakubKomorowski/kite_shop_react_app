@@ -20,8 +20,6 @@ const FilterByFreeDelivery = () => {
             checked={freeDelivery && true}
             onChange={handleFreeDeliveryChange}
             defaultChecked
-            // color="primary"
-            // id="free-delivery-checkbox"
             style={{ color: "#0088a9" }}
             inputProps={{ "aria-label": "secondary checkbox" }}
           />

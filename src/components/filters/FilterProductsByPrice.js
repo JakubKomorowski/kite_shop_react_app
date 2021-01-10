@@ -16,8 +16,8 @@ const marks = [
     label: "0$",
   },
   {
-    value: 1500,
-    label: "1500$",
+    value: 1000,
+    label: "1000$",
   },
 ];
 
@@ -43,7 +43,7 @@ const FilterProductsByPrice = () => {
         aria-labelledby="range-slider"
         // getAriaValueText={valuetext}
         style={{ color: "#0088a9", marginLeft: "24px" }}
-        max={1500}
+        max={1000}
         marks={marks}
       />
     </div>
