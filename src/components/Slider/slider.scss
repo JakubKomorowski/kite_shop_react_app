@@ -2,4 +2,13 @@
 
 .#{$root-element} {
   --organic-arrow-color: #ffffff;
+  // --slider-height-percentage: 35%;
+  --content-background-color: white;
+  width: 74%;
+  height: 50vh;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  @media (max-width: 1200px) {
+    width: 100vw;
+  }
 }
