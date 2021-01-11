@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const StyledNavUl = styled.ul`
   background-color: white;
@@ -20,11 +20,14 @@ export const StyledNavLi = styled.li`
   padding: 0 0.8rem;
 `;
 
-export const StyledNavLink = styled(Link)`
+export const StyledNavLink = styled(NavLink)`
   display: block;
   color: ${({ theme }) => theme.dark};
   text-decoration: none;
   :hover {
+    color: ${({ theme }) => theme.primaryBlue};
+  }
+  &.active-style {
     color: ${({ theme }) => theme.primaryBlue};
   }
 `;
@@ -99,10 +102,9 @@ export const StyledName = styled.h1`
   margin-left: 0.5rem;
 `;
 
-export const StyledLogoLink = styled(Link)`
+export const StyledLogoLink = styled(NavLink)`
   text-decoration: none;
   color: ${({ theme }) => theme.dark};
-  /* flex-grow: 2; */
 `;
 
 export const StyledBurger = styled.div`

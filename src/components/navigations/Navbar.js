@@ -53,25 +53,31 @@ const Navbar = () => {
           <StyledLiWrapper navMenuOpen={navMenuOpen}>
             <StyledNavLi onClick={handleNavMenuClose} navMenuOpen={navMenuOpen}>
               <StyledNavLink
+                exact
                 to={routes.home}
                 onClick={() => {
                   handleFilterDrawerClose();
                   resetFilters();
                 }}
+                activeClassName="active-style"
               >
                 Home
               </StyledNavLink>
             </StyledNavLi>
             <StyledNavLi onClick={handleNavMenuClose} navMenuOpen={navMenuOpen}>
-              <StyledNavLink to={routes.contact}>Contact</StyledNavLink>
+              <StyledNavLink to={routes.contact} activeClassName="active-style">
+                Contact
+              </StyledNavLink>
             </StyledNavLi>
             <StyledNavLi onClick={handleNavMenuClose} navMenuOpen={navMenuOpen}>
               <StyledNavLink
+                exact
                 to={routes.products}
                 onClick={() => {
                   handleFilterDrawerClose();
                   resetFilters();
                 }}
+                activeClassName="active-style"
               >
                 Products
               </StyledNavLink>
@@ -81,7 +87,12 @@ const Navbar = () => {
                 onClick={handleNavMenuClose}
                 navMenuOpen={navMenuOpen}
               >
-                <StyledNavLink to={routes.categories}>Categories</StyledNavLink>
+                <StyledNavLink
+                  to={routes.categories}
+                  activeClassName="active-style"
+                >
+                  Categories
+                </StyledNavLink>
               </StyledNavLi>
             ) : (
               <StyledNavLi
@@ -89,7 +100,10 @@ const Navbar = () => {
                 onMouseEnter={handleMenuOpen}
                 onMouseLeave={handleMenuClose}
               >
-                <StyledNavLink to={routes.categories}>
+                <StyledNavLink
+                  to={routes.categories}
+                  activeClassName="active-style"
+                >
                   Categories <IoMdArrowDropdown />
                 </StyledNavLink>
                 <StyledDropdownUl menu={menuOpen}>
