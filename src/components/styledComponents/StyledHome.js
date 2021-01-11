@@ -14,6 +14,5 @@ export const TitleContainer = styled.div`
   padding: 4rem 0 0.5rem;
   margin-bottom: 0.8rem;
   width: 74vw;
-  /* border-bottom: 2px solid ${({ theme }) => theme.primaryBlue}; */
   font-size: 1.4rem;
 `;

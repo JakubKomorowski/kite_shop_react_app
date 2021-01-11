@@ -80,7 +80,6 @@ export const AdditionalProductsWrapper = styled.ul`
   max-width: 1300px;
   display: grid;
   list-style: none;
-  /* justify-content: center; */
   margin: 0 auto;
   grid-template-columns: repeat(auto-fit, 230px);
   grid-gap: 2rem;
