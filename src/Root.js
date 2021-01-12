@@ -18,6 +18,7 @@ import {
   getSelectedCategoryFromLocalStorage,
 } from "./utils/localStorageGetters";
 import { alertColorOptions } from "./utils/alertColorOptions";
+import { useLocation } from "react-router-dom";
 
 const Root = () => {
   const [cart, setCart] = useState(getCartFromLocalStorage());
@@ -207,6 +208,16 @@ const Root = () => {
       handleNewsletterOpen();
     }, 15000);
   }, []);
+
+  const ScrollToTop = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+
+    return null;
+  };
 
   const filterProducts = () => {
     let tempProducts = [...products];
@@ -562,6 +573,7 @@ const Root = () => {
         }}
       >
         <MainTemplate>
+          <ScrollToTop />
           <Switch>
             <Route exact path={routes.home} component={Home} />
             <Route exact path={routes.products} component={Products} />
