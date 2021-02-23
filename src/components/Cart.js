@@ -13,7 +13,6 @@ import {
   CartProductName,
   CartProductPrice,
   CartImgWrapper,
-  ContinueShoppingBtn,
   CartBtnContainer,
   ContinueShoppingBtnWrapper,
   CartTotal,
@@ -25,6 +24,8 @@ import {
 import PayPalExpressBtn from "./PaypalButton";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import Button from "./atoms/Button";
+import { buttonsTypes } from "../utils/buttonsTypes";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -157,18 +158,25 @@ const Cart = () => {
           {cartTotal === 0 ? (
             <CartEmptyWrapper>
               <CartEmpty>Cart is empty</CartEmpty>
-              <ContinueShoppingBtn onClick={handleCartClose}>
+              <Button
+                buttonType={buttonsTypes.continueShopping}
+                onClickFn={handleCartClose}
+              >
                 Continue Shopping
-              </ContinueShoppingBtn>
+              </Button>
             </CartEmptyWrapper>
           ) : (
             <>
               <CartTotal>Total: ${cartTotal}</CartTotal>
               <CartBtnContainer>
                 <ContinueShoppingBtnWrapper>
-                  <ContinueShoppingBtn onClick={handleCartClose}>
+                  <Button
+                    buttonType={buttonsTypes.continueShoppingCart}
+                    cart={true}
+                    onClickFn={handleCartClose}
+                  >
                     Continue Shopping
-                  </ContinueShoppingBtn>
+                  </Button>
                 </ContinueShoppingBtnWrapper>
                 <PayPalExpressBtn />
               </CartBtnContainer>

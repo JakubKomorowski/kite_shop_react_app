@@ -14,6 +14,8 @@ import {
   StyledFieldWrapper,
   StyledErrorWrapper,
 } from "./styledComponents/StyledContactForm";
+import Button from "./atoms/Button";
+import { buttonsTypes } from "../utils/buttonsTypes";
 
 const StyledField = styled(Field)`
   width: 100%;
@@ -35,21 +37,6 @@ const StyledFormik = styled(Form)`
   background: white;
   padding: 3rem;
   border-radius: 20px;
-`;
-
-const SubscribeBtn = styled.button`
-  background: ${({ theme }) => theme.primaryBlue};
-  padding: 0.5em 1.75em;
-  width: 100%;
-  color: white;
-  border: none;
-  text-transform: uppercase;
-  font-size: 1.25em;
-  outline: none;
-  margin-top: 10px;
-  &:hover {
-    background-color: #007a9b;
-  }
 `;
 
 const contactFormSchema = Yup.object().shape({
@@ -152,9 +139,13 @@ const NewsletterModal = () => {
                 <StyledErrorWrapper>
                   <ErrorMessage name="email" />
                 </StyledErrorWrapper>
-                <SubscribeBtn onClick={handleNewsletterClose} type="submit">
+                <Button
+                  buttonType={buttonsTypes.subscribe}
+                  onClickFn={handleNewsletterClose}
+                  type="submit"
+                >
                   Subscribe
-                </SubscribeBtn>
+                </Button>
               </StyledFormik>
             )}
           </Formik>

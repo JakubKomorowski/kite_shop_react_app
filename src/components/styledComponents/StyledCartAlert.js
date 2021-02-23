@@ -62,40 +62,6 @@ export const StyledDialogTitle = styled(DialogTitle)`
   align-items: center;
 `;
 
-export const ContinueShoppingBtn = styled.button`
-  background: white;
-  border: 1px solid ${({ theme }) => theme.primaryBlue};
-  padding: 0.5em 1.75em;
-  color: ${({ theme }) => theme.primaryBlue};
-  text-transform: capitalize;
-  font-size: 1em;
-  outline: none;
-  margin: 15px;
-  &:hover {
-    background-color: #edf7f9;
-  }
-  @media (max-width: 600px) {
-    margin: 5px;
-  }
-`;
-
-export const AddToCartBtn = styled.button`
-  background: white;
-  border: 1px solid #ff8539;
-  padding: 0.5em 1.75em;
-  color: #ff8539;
-  text-transform: capitalize;
-  font-size: 1em;
-  outline: none;
-  margin: 15px;
-  &:hover {
-    background-color: #fff1e9;
-  }
-  @media (max-width: 600px) {
-    margin: 5px;
-  }
-`;
-
 export const StyledDialogActions = styled.div`
   width: 100%;
   display: flex;

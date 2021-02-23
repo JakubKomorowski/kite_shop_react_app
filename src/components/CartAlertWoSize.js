@@ -9,12 +9,12 @@ import {
   PriceNameImgWrapper,
   PriceNameWrapper,
   StyledDialogTitle,
-  ContinueShoppingBtn,
-  AddToCartBtn,
   StyledDialogActions,
   StyledProductName,
   StyledProductPrice,
 } from "./styledComponents/StyledCartAlert";
+import Button from "./atoms/Button";
+import { buttonsTypes } from "../utils/buttonsTypes";
 
 const CartAlertWoSize = () => {
   const value = useContext(ShopContext);
@@ -93,21 +93,23 @@ const CartAlertWoSize = () => {
                   </DialogContent>
                   <DialogActions>
                     <StyledDialogActions>
-                      <ContinueShoppingBtn
-                        onClick={() => {
+                      <Button
+                        buttonType={buttonsTypes.continueShopping}
+                        onClickFn={() => {
                           handleIsCartAlertWoSizeClose();
                         }}
                       >
                         Continue shopping
-                      </ContinueShoppingBtn>
-                      <AddToCartBtn
-                        onClick={() => {
+                      </Button>
+                      <Button
+                        buttonType={buttonsTypes.addToCartOutlined}
+                        onClickFn={() => {
                           handleIsCartAlertWoSizeClose();
                           handleCartOpen();
                         }}
                       >
                         Go to cart
-                      </AddToCartBtn>
+                      </Button>
                     </StyledDialogActions>
                   </DialogActions>
                 </Dialog>

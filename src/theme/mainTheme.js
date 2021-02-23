@@ -1,6 +1,7 @@
 export const mainTheme = {
   primaryBlue: "#0088a9",
   dark: "#24252a",
+  primaryOrange: "#ff8539",
 
   fontWeight: {
     light: 300,

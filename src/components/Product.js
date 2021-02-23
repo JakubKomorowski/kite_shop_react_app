@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import Button from "../components/atoms/Button";
 import ShopContext from "../context";
+import { buttonsTypes } from "../utils/buttonsTypes";
 import {
   Wrapper,
   ProductImg,
   ProductTitle,
   ProductPrice,
-  AddToCartBtn,
-  ViewBtn,
   ProductWrapper,
 } from "./styledComponents/StyledProduct";
 
@@ -47,25 +47,27 @@ const Product = ({
         <p>{freeDelivery ? "Free Delivery" : ""}</p>
       </ProductWrapper>
       <div>
-        <AddToCartBtn
-          onClick={() => {
+        <Button
+          buttonType={buttonsTypes.addProduct}
+          onClickFn={() => {
             selectProduct(productName);
             handleIsCartAlertOpen();
             handleKiteIdValueDefault();
           }}
         >
           add to cart
-        </AddToCartBtn>
+        </Button>
         <Link to={`/products/${productName.replace(/\s/g, "")}`}>
-          <ViewBtn
-            onClick={() => {
+          <Button
+            buttonType={buttonsTypes.view}
+            onClickFn={() => {
               selectProduct(productName);
               notSelect(productName, productCategory);
               handleKiteIdValueDefault();
             }}
           >
             view
-          </ViewBtn>
+          </Button>
         </Link>
       </div>
     </Wrapper>

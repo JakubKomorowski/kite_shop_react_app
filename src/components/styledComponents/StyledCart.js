@@ -56,25 +56,9 @@ export const CartImgWrapper = styled.div`
   justify-content: center;
 `;
 
-export const ContinueShoppingBtn = styled.button`
-  background: white;
-  border: 1px solid ${({ theme }) => theme.primaryBlue};
-  padding: 0.5em 1.75em;
-
-  width: 100%;
-  color: ${({ theme }) => theme.primaryBlue};
-  text-transform: capitalize;
-  font-size: 1em;
-  outline: none;
-  width: 250px;
-
-  &:hover {
-    background-color: #edf7f9;
-  }
-`;
-
 export const ContinueShoppingBtnWrapper = styled.div`
-  width: 260px;
+  width: 251px;
+  /* border: 1px solid red; */
   @media (max-width: 1000px) {
     margin-bottom: 1rem;
   }
@@ -86,6 +70,8 @@ export const CartBtnContainer = styled.div`
   width: 100%;
   @media (max-width: 1000px) {
     flex-direction: column;
+    /* border: 1px solid black; */
+    align-items: center;
   }
 `;
 

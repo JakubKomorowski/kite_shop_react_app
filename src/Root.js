@@ -206,7 +206,7 @@ const Root = () => {
   useEffect(() => {
     setTimeout(() => {
       handleNewsletterOpen();
-    }, 15000);
+    }, 5000);
   }, []);
 
   const ScrollToTop = () => {

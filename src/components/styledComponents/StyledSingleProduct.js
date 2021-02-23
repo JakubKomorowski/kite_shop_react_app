@@ -31,6 +31,7 @@ export const SingleProductWrapper = styled.li`
   max-width: 1300px;
   margin: 0 auto;
   margin-top: 100px;
+  /* justify-content: center; */
   @media (max-width: 1000px) {
     flex-direction: column;
     margin-top: 50px;
@@ -38,7 +39,7 @@ export const SingleProductWrapper = styled.li`
 `;
 
 export const ProductInfoWrapper = styled.div`
-  margin-left: 80px;
+  margin-left: 100px;
   @media (max-width: 1000px) {
     margin-left: 0;
     margin-top: 1rem;
@@ -52,28 +53,11 @@ export const ProductPrice = styled.p`
   color: ${({ theme }) => theme.dark};
 `;
 
-export const AddToCartBtn = styled.button`
-  background: #ff8539;
-  padding: 0.5em 1.75em;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 1.25em;
-  border: none;
-  outline: none;
-  width: 50%;
-  @media (max-width: 700px) {
-    width: 100%;
-  }
-
-  &:hover {
-    background-color: #f47e33;
-  }
-`;
-
 export const ProductDescription = styled.p`
   font-size: 0.9rem;
   margin: 1rem 0;
   text-align: justify;
+  max-width: 600px;
 `;
 
 export const AdditionalProductsWrapper = styled.ul`

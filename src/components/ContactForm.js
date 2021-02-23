@@ -15,7 +15,7 @@ import {
   StyledWrapper,
   StyledFormik,
   StyledTitle,
-  StyledErrorWrapper,
+  // StyledErrorWrapper,
   StyledGoogleMapWrapper,
   StyledButton,
 } from "./styledComponents/StyledContactForm";
@@ -108,9 +108,9 @@ const ContactForm = () => {
                 required
               />
             </StyledFieldWrapper>
-            <StyledErrorWrapper>
-              <ErrorMessage name="email" />
-            </StyledErrorWrapper>
+            {/* <StyledErrorWrapper> */}
+            <ErrorMessage name="email" />
+            {/* </StyledErrorWrapper> */}
             <StyledFieldWrapper>
               <label htmlFor="message">Message</label>
               <StyledMessage

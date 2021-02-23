@@ -7,7 +7,6 @@ import {
   SingleProductWrapper,
   ProductInfoWrapper,
   ProductPrice,
-  AddToCartBtn,
   ProductDescription,
   AdditionalProductsWrapper,
   SingleAdditionalProduct,
@@ -20,6 +19,8 @@ import {
   StyledCartAlertWoSize,
   AdditionalProductName,
 } from "../components/styledComponents/StyledSingleProduct";
+import Button from "../components/atoms/Button";
+import { buttonsTypes } from "../utils/buttonsTypes";
 
 const SingleProduct = () => {
   const value = useContext(ShopContext);
@@ -57,8 +58,9 @@ const SingleProduct = () => {
                     </ProductDescription>
                     <SizeSelector />
                     <ProductPrice>${productPrice}</ProductPrice>
-                    <AddToCartBtn
-                      onClick={() => {
+                    <Button
+                      buttonType={buttonsTypes.addToCart}
+                      onClickFn={() => {
                         handleIsCartAlertWoSizeOpen();
 
                         addToCart(el.productName, el.kiteId);
@@ -66,7 +68,7 @@ const SingleProduct = () => {
                       }}
                     >
                       add to cart
-                    </AddToCartBtn>
+                    </Button>
                   </ProductInfoWrapper>
                 </SingleProductWrapper>
               ) : null}

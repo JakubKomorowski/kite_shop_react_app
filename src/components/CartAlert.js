@@ -11,12 +11,12 @@ import {
   PriceNameWrapper,
   SizeSelectorWrapper,
   StyledDialogTitle,
-  ContinueShoppingBtn,
-  AddToCartBtn,
   StyledDialogActions,
   StyledProductName,
   StyledProductPrice,
 } from "./styledComponents/StyledCartAlert";
+import Button from "./atoms/Button";
+import { buttonsTypes } from "../utils/buttonsTypes";
 
 const CartAlert = () => {
   const value = useContext(ShopContext);
@@ -74,15 +74,17 @@ const CartAlert = () => {
                   </DialogContent>
                   <DialogActions>
                     <StyledDialogActions>
-                      <ContinueShoppingBtn
-                        onClick={() => {
+                      <Button
+                        buttonType={buttonsTypes.continueShopping}
+                        onClickFn={() => {
                           handleIsCartAlertClose();
                         }}
                       >
                         Continue shopping
-                      </ContinueShoppingBtn>
-                      <AddToCartBtn
-                        onClick={() => {
+                      </Button>
+                      <Button
+                        buttonType={buttonsTypes.addToCartOutlined}
+                        onClickFn={() => {
                           handleIsCartAlertClose();
                           addToCart(productName, kiteId);
                           increaseCartCounter();
@@ -90,7 +92,7 @@ const CartAlert = () => {
                         }}
                       >
                         Add to cart
-                      </AddToCartBtn>
+                      </Button>
                     </StyledDialogActions>
                   </DialogActions>
                 </Dialog>
