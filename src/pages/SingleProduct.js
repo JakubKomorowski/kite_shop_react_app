@@ -45,6 +45,7 @@ const SingleProduct = () => {
             productDescription,
             productName,
             productPrice,
+            kiteId,
           } = el;
           return (
             <>
@@ -63,7 +64,7 @@ const SingleProduct = () => {
                       onClickFn={() => {
                         handleIsCartAlertWoSizeOpen();
 
-                        addToCart(el.productName, el.kiteId);
+                        addToCart(productName, kiteId);
                         increaseCartCounter();
                       }}
                     >

@@ -5,9 +5,13 @@ import {
 } from "../styledComponents/StyledFooter";
 
 const Footer = () => {
+  const today = new Date();
+  const year = today.getFullYear();
   return (
     <FooterWrapper>
-      <FooterCopyright>&copy; 2021 Created by Jakub Komorowski</FooterCopyright>
+      <FooterCopyright>
+        &copy; {year} Created by Jakub Komorowski
+      </FooterCopyright>
     </FooterWrapper>
   );
 };

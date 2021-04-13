@@ -4,7 +4,7 @@
 
 This project uses React.js as main framework, React-Router-Dom for navigation, Contentful CMS from dynamically updating the data and Styled-Components for layout styles.
 
-### Live demo:
+### Live demo: https://kite-shop-react-app.netlify.app/
 
 ## Main Tech stack:
 
