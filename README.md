@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project uses React.js as main framework, React-Router-Dom for navigation, Contentful CMS from dynamically updating the data and Styled-Components for layout styles.
+It's a project of a fictional online kitesurfing shop. Among the others, this application contains the functionality of sorting, filtering, searching, and adding products to the cart. It’s based on Context Api and Contentful Api. It is styled using Styled-Components and Material-UI. Thanks to this project, I immersed myself in React and learned styled-components.
 
 ### Live demo: https://kite-shop-react-app.netlify.app/
 
