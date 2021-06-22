@@ -77,6 +77,7 @@ const Root = () => {
       return product;
     });
 
+    //remove duplicates from all the products
     const newContentfulItems = tempContentfulItems.filter(
       (thing, index, self) =>
         index === self.findIndex((t) => t.productName === thing.productName)
@@ -95,7 +96,6 @@ const Root = () => {
       }
     }, []);
     setOneOfCategory([...uniq]);
-
     setPriceRange([0, 1000]);
     setFilteredProducts(newContentfulItems);
     setAllProducts(tempContentfulItems);
@@ -224,22 +224,19 @@ const Root = () => {
 
     //delivery
     if (freeDelivery) {
-      tempProducts = tempProducts.filter((el) => el.freeDelivery === true);
+      tempProducts = tempProducts.filter((el) => el.freeDelivery);
     }
     //search
     if (search !== "") {
-      tempProducts = tempProducts.filter((el) => {
-        return (
-          el.productName.toLowerCase().startsWith(search.toLowerCase()) === true
-        );
-      });
+      tempProducts = tempProducts.filter((el) =>
+        el.productName.toLowerCase().startsWith(search.toLowerCase())
+      );
     }
     //price
-    tempProducts = tempProducts.filter((el) => {
-      return (
+    tempProducts = tempProducts.filter(
+      (el) =>
         el.productPrice >= priceRange[0] && el.productPrice <= priceRange[1]
-      );
-    });
+    );
     //category
     if (category !== "All") {
       tempProducts = tempProducts.filter(
@@ -249,15 +246,15 @@ const Root = () => {
 
     //sorting
     if (sortBy === "cheap") {
-      tempProducts = tempProducts.sort((a, b) => {
-        return a.productPrice - b.productPrice;
-      });
+      tempProducts = tempProducts.sort(
+        (a, b) => a.productPrice - b.productPrice
+      );
     }
 
     if (sortBy === "expensive") {
-      tempProducts = tempProducts.sort((a, b) => {
-        return b.productPrice - a.productPrice;
-      });
+      tempProducts = tempProducts.sort(
+        (a, b) => b.productPrice - a.productPrice
+      );
     }
 
     if (sortBy === "az") {
@@ -291,14 +288,12 @@ const Root = () => {
 
     //delivery
     if (freeDelivery) {
-      tempProducts = tempProducts.filter((el) => el.freeDelivery === true);
+      tempProducts = tempProducts.filter((el) => el.freeDelivery);
     }
     //search
     if (search !== "") {
       tempProducts = tempProducts.filter((el) => {
-        return (
-          el.productName.toLowerCase().startsWith(search.toLowerCase()) === true
-        );
+        return el.productName.toLowerCase().startsWith(search.toLowerCase());
       });
     }
     //price
@@ -310,15 +305,15 @@ const Root = () => {
 
     //sorting
     if (sortBy === "cheap") {
-      tempProducts = tempProducts.sort((a, b) => {
-        return a.productPrice - b.productPrice;
-      });
+      tempProducts = tempProducts.sort(
+        (a, b) => a.productPrice - b.productPrice
+      );
     }
 
     if (sortBy === "expensive") {
-      tempProducts = tempProducts.sort((a, b) => {
-        return b.productPrice - a.productPrice;
-      });
+      tempProducts = tempProducts.sort(
+        (a, b) => b.productPrice - a.productPrice
+      );
     }
 
     if (sortBy === "az") {
@@ -343,7 +338,7 @@ const Root = () => {
     setIsCartOpen(true);
   };
 
-  const handleCartClose = (name) => {
+  const handleCartClose = () => {
     setIsCartOpen(false);
   };
 
@@ -400,12 +395,11 @@ const Root = () => {
       setCart([...new Set([...cart, filteredProduct])]);
     }
 
-    selectProduct(name);
+    // selectProduct(name);
   };
 
   const selectProduct = (name) => {
     const filteredProduct = allProducts.filter((el) => el.productName === name);
-    console.log(filteredProduct.kiteId);
     setSelectedProduct([...filteredProduct]);
     localStorage.setItem("selectedProduct", JSON.stringify(filteredProduct));
   };
